@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js"></script>
+    <link rel="stylesheet" href="{% static 'covid19app/css/CountryPage.css' %}">
+</head>
+<body>
+    
+    <div class="wrapper">
+        <!--SIDE-BAR-->
+        
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                
+                <h3>{{request.user}}</h3>
+            </div>
+            <ul class="sidebar-list components">
+                <li>
+                    <a href="/main">Global Data</a>
+                </li>
+                <li>
+                    <a href="/country">Country Data</a>
+                </li>
+            </ul>
+        </nav>
+        <div id="content">
+            <div class="card">
+              
+                <div class="card-title text-centre">
+                  
+                  <button id="sidebarCollapse" class="card float-left"><i class="fa fa-toggle-on" aria-hidden="true"></i></button>
+                  <button href="/logout" class="card float-right"><i class="fa fa-power-off" aria-hidden="true"></i></button>
+  
+                  <h3>Global Data is Here</h3>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+              
+                <div class="card-title">
+                    
+                    <div class="searchCard"> 
+                        <form>
+                            <label for="">Choose Country</label>
+                            <div class="form-row align-items-center">
+                              <div class="col-md-11">
+                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                  <option selected>Choose...</option>
+                                  {% for c in countryPick %}
+                                    <option>{{c.Country}}</option>
+                                  {% endfor %}
+                                </select>
+                              </div>
+                              
+                              <div class="col-md-1">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                              </div>
+                            </div>
+                          </form>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <br>
+            
+            <div id="datacards" class="row">
+                <div class="col-md-4 col-sm-4 col-xs-8">
+                    <div class="card" id="confirmedCard">
+                        <div class="card-body">
+                            <h4 class="card-title">Confirmed Cases</h4>
+                            <p>{{countryPick.10.Country}}</p>
+                            <p class="card-text">{{countryPick.10.TotalConfirmed}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-8">
+                    <div class="card" id="recoveredCard">
+                        <div class="card-body">
+                            <h4 class="card-title">Recovered Cases</h4>
+                            <p>{{countryPick.10.Country}}</p>
+
+                            <p class="card-text">{{countryPick.10.TotalRecovered}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-8">
+                    <div class="card" id="deathCard">
+                        <div class="card-body">
+                            <h4 class="card-title">Death Cases</h4>
+                            <p>{{countryPick.10.Country}}</p>
+
+                            <p class="card-text">{{countryPick.10.TotalDeaths}}</p>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            
+<!--{{countryPick}}-->
+<br>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <canvas id="barChart" width="100" height="65"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <canvas id="polarChart" width="100" height="65"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+            
+        </div>
+        
+        
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script>
+        console.log("Country Running")
+
+        
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#sidebarCollapse").on('click', function(){
+                $("#sidebar").toggleClass('active');
+            });
+        });
+    </script>
+    <script>
+        console.log("Country Running")
+        const x = '{{countryPick.10.TotalConfirmed}}';
+        const y = '{{countryPick.10.TotalRecovered}}';
+        const z = '{{countryPick.10.TotalDeaths}}';
+        console.log('{{countryPick.Country}}');
+        const n = 100;
+        
+        const ctx1 = document.getElementById('barChart').getContext('2d');
+        const chart1 = new Chart(ctx1, {
+            // The type of chart we want to create
+            type: 'bar',
+
+            // The data for our dataset
+            data: {
+                labels: ['Cases', 'Recovered', 'Deaths'],
+                datasets: [{
+                    
+                    //fill : false,
+                    backgroundColor: ['rgb(77, 0, 255)','rgb(0, 175, 58)','rgb(208, 0, 0)'],
+                    borderColor: ['rgb(0, 0, 0)','rgb(0, 0, 0)','rgb(0, 0, 0)'],
+                    data: [x/n,y/n,z/n]
+                }]
+            },
+        });
+        
+    </script>
+    
+    
+</body>
+</html>

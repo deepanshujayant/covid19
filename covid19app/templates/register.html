@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+<body>
+    <h1>Register</h1>
+        <div class="container">
+            <div id="form-div">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="inputEmail4">Username</label>
+                            {{form.username}}
+                        </div>
+                        <div class="form-group col-md-6">
+                        <label for="firstname">First Name</label>
+                        {{form.first_name}}            </div>
+                        <div class="form-group col-md-6">
+                        <label for="lastname">Last Name</label>  
+                        {{form.last_name}}            
+                        </div>
+                    
+                        
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail4">Email</label>
+                        {{form.email}}
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputPassword4">Password</label>
+                        {{form.password1}}
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputPassword4">Confirm Password</label>
+                        {{form.password2}}
+                    </div>
+                    
+                    </div>
+                
+                    
+                    <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">
+                        Check me out
+                        </label>
+                    </div>
+                    </div>
+                    <button type="submit" name = "Create User" class="btn btn-primary">Register</button>
+                    <a href="/">Already have a account? Login</a>
+                </form>
+            </div>   
+    </div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script>
+        console.log('Register.html running')
+    </script>
+    <script>
+        var form_fields = document.getElementsByTagName('input')
+        
+        form_fields[1].className = 'form-control';
+        form_fields[1].placeholder = 'User-Name';
+        form_fields[2].className = 'form-control';
+        form_fields[2].placeholder = 'First Name';
+        form_fields[3].className = 'form-control';
+        form_fields[3].placeholder = 'Last Name';
+        form_fields[4].className = 'form-control';
+        form_fields[4].placeholder = 'E-mail';
+        form_fields[5].className = 'form-control';
+        form_fields[5].placeholder = 'Password';
+        form_fields[6].className = 'form-control';
+        form_fields[6].placeholder = 'Confirm Password';
+        
+    </script>
+</body>
+</html>

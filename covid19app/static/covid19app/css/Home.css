@@ -1,0 +1,28 @@
+.navbar{
+    margin-bottom: 0px;
+}
+
+#loginCard{
+    text-align: left;
+    border: 1px solid black;
+    background-position: center;
+    border-radius: 25px;
+    -webkit-box-shadow: -2px 2px 26px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: -2px 2px 26px 5px rgba(0,0,0,0.75);
+    box-shadow: -2px 2px 26px 5px rgba(0,0,0,0.75);
+    margin-bottom: 0%;
+}
+.jumbotron{
+    text-align: center;
+    margin-top: 6%;
+    background-position: center;
+    
+    border-radius: 50px;
+    
+    background-size: auto;
+    height: 100%;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 30px;
+
+}
