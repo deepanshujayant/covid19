@@ -16,15 +16,19 @@
         
         <nav id="sidebar">
             <div class="sidebar-header">
-                
+                <i class="fa fa-user-md" aria-hidden="true"></i>
                 <h3>{{request.user}}</h3>
+                <h5 id="date"></h5>
             </div>
             <ul class="sidebar-list components">
                 <li>
-                    <a href="/main">Global Data</a>
+                    <a href="/main"><h4>Global Data</h4></a>
                 </li>
                 <li>
                     <a href="/country">Country Data</a>
+                </li>
+                <li>
+                    <a href="/country/?country=Australia"><i class="fa fa-map" aria-hidden="true"></i></a>
                 </li>
             </ul>
         </nav>
@@ -35,22 +39,23 @@
                 <div class="card-title text-centre">
                   
                   <button id="sidebarCollapse" class="card float-left"><i class="fa fa-toggle-on" aria-hidden="true"></i></button>
-                  
-  
-                  <h3>Covid19 Dashboard</h3>
+                  <a href="/logout">
+                      <button type="button" href="/logout" class="card btn float-right"><i class="fa fa-power-off" aria-hidden="true"></i></button>
+                  </a>
+                  <h3>Covid19 Dashboard</h3>               
                 </div>
-            </div>
+              </div>
             <br>
             <div class="card">
               
                 <div class="card-title">
                     
-                    <div class="searchCard"> 
+                    <div> 
                         <form method="GET" action="">
                             <label for="">Choose Country</label>
-                            <div class="form-row align-items-center">
-                              <div class="col-md-11">
-                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                            <div class="form-row row align-items-center">
+                              <div class="col-auto">
+                                
                                 <select class="custom-select mr-sm-2" id="countryname" type="text" name = "country" for="countryname">
                                   <option>Choose...</option>
                                   {% for c in data %}
@@ -59,25 +64,30 @@
                                 </select>
                               </div>
                               
-                              <div class="col-md-1">
+                              <div class="col-auto float-right">
                                 <button type="submit" value="OK" class="btn btn-primary">Search</button>
                               </div>
                             </div>
                           </form>
                     </div>
                     
+                    
+                </div>
+                <div>
+                    <p>{{countryPick.Country}}</p>
                 </div>
             </div>
             
             <br>
             
-            <!--<div id="datacards" class="row">
+            <br>
+            <div id="datacards" class="row">
                 <div class="col-md-4 col-sm-4 col-xs-8">
                     <div class="card" id="confirmedCard">
                         <div class="card-body">
                             <h4 class="card-title">Confirmed Cases</h4>
-                            <p>{{countryPick.10.Country}}</p>
-                            <p class="card-text">{{countryPick.10.TotalConfirmed}}</p>
+                            
+                            <p class="card-text">{{countryPick.TotalConfirmed}}</p>
                         </div>
                     </div>
                 </div>
@@ -85,9 +95,8 @@
                     <div class="card" id="recoveredCard">
                         <div class="card-body">
                             <h4 class="card-title">Recovered Cases</h4>
-                            <p>{{countryPick.10.Country}}</p>
-
-                            <p class="card-text">{{countryPick.10.TotalRecovered}}</p>
+                            
+                            <p class="card-text">{{countryPick.TotalRecovered}}</p>
                         </div>
                     </div>
                 </div>
@@ -95,14 +104,13 @@
                     <div class="card" id="deathCard">
                         <div class="card-body">
                             <h4 class="card-title">Death Cases</h4>
-                            <p>{{countryPick.10.Country}}</p>
 
-                            <p class="card-text">{{countryPick.10.TotalDeaths}}</p>
+                            <p class="card-text">{{countryPick.TotalDeaths}}</p>
                         </div>
                     </div>
                 </div>  
             </div>
-        -->
+        
 <!--{{countryPick}}-->
 <br>
             <div class="row">
@@ -136,6 +144,15 @@
         console.log("Country Running")
 
         
+    </script>
+    <script>
+        var num =  new Date();
+        var yr = num.getFullYear();
+        var mo = num.getMonth() + 1;
+        var dt = num.getDate();
+        var monthArr = ["Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov","Dec"];
+        mo = monthArr[mo];
+        document.getElementById("date").innerHTML = dt + " " + mo + ", " + yr;
     </script>
     <script>
         $(document).ready(function(){
