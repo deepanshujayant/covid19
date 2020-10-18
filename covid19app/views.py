@@ -49,18 +49,18 @@ def register(request):
 
 @login_required(login_url='/logout') #copy paste this line for next def of country data
 def covid(request):
-    data = True
-    result = None
+    data1 = True
+    result1 = None
     covidCases = None
-    while(data):
+    while(data1):
         try:
-            result = requests.get('https://api.covid19api.com/summary')
-            json = result.json()
-            countryPick = json['Countries']
+            result1 = requests.get('https://api.covid19api.com/summary')
+            json = result1.json()
+            
             covidCases = json['Global']
-            data = False
+            data1 = False
         except:
-            data = True
+            data1 = True
 
     return render(request, 'Main.html', 
     {'covidCases' : covidCases})

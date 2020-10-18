@@ -26,6 +26,7 @@
             <div class="sidebar-header">
                 <i class="fa fa-user-md" aria-hidden="true"></i>
                 <h3>{{request.user}}</h3>
+                <h5 id="date"></h5>
             </div>
             <ul class="sidebar-list components">
                 <li>
@@ -45,7 +46,7 @@
                 <button id="sidebarCollapse" class="card float-left"><i class="fa fa-toggle-on" aria-hidden="true"></i></button>
                 <button type="button" href="/logout" class="card float-right"><i class="fa fa-power-off" aria-hidden="true"></i></button>
 
-                <h3>Global Data is Here</h3>
+                <h3>Covid19 Dashboard</h3>
               </div>
             </div>
             
@@ -57,7 +58,7 @@
                     <div class="card" id="confirmedCard">
                         <div class="card-body">
                             <h4 class="card-title">Confirmed Cases</h4>
-                            <span class="card-text count">{{covidCases.TotalConfirmed}}</span>
+                            <p id="nums" class="card-text count">{{covidCases.TotalConfirmed}}</p>
                         </div>
                     </div>
                 </div>
@@ -65,7 +66,7 @@
                     <div class="card" id="recoveredCard">
                         <div class="card-body">
                             <h4 class="card-title">Recovered Cases</h4>
-                            <p class="card-text count">{{covidCases.TotalRecovered}}</p>
+                            <p id="nums" class="card-text count">{{covidCases.TotalRecovered}}</p>
                         </div>
                     </div>
                 </div>
@@ -73,7 +74,8 @@
                     <div class="card" id="deathCard">
                         <div class="card-body">
                             <h4 class="card-title">Death Cases</h4>
-                            <p class="card-text count">{{covidCases.TotalDeaths}}</p>
+                            
+                            <p id="nums" class="card-text count">{{covidCases.TotalDeaths}}</p>
                         </div>
                     </div>
                 </div>  
@@ -105,7 +107,7 @@
                     <div class="card" id="">
                         <div class="card-body">
                             <h4 class="card-title">New Cases</h4>
-                            <span class="count card-text">{{covidCases.NewConfirmed}}</span>
+                            <p id="nums" class="count card-text">{{covidCases.NewConfirmed}}</span>
                         </div>
                     </div>
                 </div>
@@ -121,7 +123,7 @@
                     <div class="card" id="">
                         <div class="card-body">
                             <h4 class="card-title">New Deaths</h4>
-                            <span class="card-text count">{{covidCases.NewDeaths}}</span>
+                            <p id="nums" class="card-text count">{{covidCases.NewDeaths}}</p>
                         </div>
                     </div>
                 </div>  
@@ -151,7 +153,15 @@
         });
         console.log('.count')
     </script>
-    
+    <script>
+        var num =  new Date();
+        var yr = num.getFullYear();
+        var mo = num.getMonth() + 1;
+        var dt = num.getDate();
+        var monthArr = ["Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov","Dec"];
+        mo = monthArr[mo];
+        document.getElementById("date").innerHTML = dt + " " + mo + ", " + yr;
+    </script>
     <script>
         $(document).ready(function(){
             $("#sidebarCollapse").on('click', function(){
