@@ -15,6 +15,7 @@
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js"></script>
+    
     <link rel="stylesheet" href="{% static 'covid19app/css/Main.css' %}">
 </head>
 <body>
@@ -33,23 +34,26 @@
                     <a href="/main">Global Data</a>
                 </li>
                 <li>
-                    <a><img src="https://img.icons8.com/ios/50/000000/india-map.png"/></a>
+                    
                     <a href="/country">Country Data</a>
                 </li>
             </ul>
         </nav>
         <div id="content">
+            
             <div class="card">
               
               <div class="card-title text-centre">
                 
                 <button id="sidebarCollapse" class="card float-left"><i class="fa fa-toggle-on" aria-hidden="true"></i></button>
-                <button type="button" href="/logout" class="card float-right"><i class="fa fa-power-off" aria-hidden="true"></i></button>
+            <a href="/logout">
+            <button type="button" href="/logout" class="btn btn-danger">Logout</button></a>
+                
 
-                <h3>Covid19 Dashboard</h3>
+                
               </div>
             </div>
-            
+            <h3>Covid19 Dashboard</h3>
             <br>
             
             <div class="row">
@@ -145,9 +149,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha512-CEiA+78TpP9KAIPzqBvxUv8hy41jyI3f2uHi7DGp/Y/Ka973qgSdybNegWFciqh6GrN2UePx2KkflnQUbUhNIA==" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js" integrity="sha512-d8F1J2kyiRowBB/8/pAWsqUl0wSEOkG5KATkVV4slfblq9VRQ6MyDZVxWl2tWd+mPhuCbpTB4M7uU/x9FlgQ9Q==" crossorigin="anonymous"></script>
-    
+    <!---->
     <script>
-        $('.count').counterUp({
+        $ ('.count').counterUp({
             delay: 20,
             time: 1000
         });
@@ -226,7 +230,7 @@
         });
         
     </script>
-    <!--Number Counter-->
+    
     
     
     

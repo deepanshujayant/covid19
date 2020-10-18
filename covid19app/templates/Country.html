@@ -46,14 +46,14 @@
                 <div class="card-title">
                     
                     <div class="searchCard"> 
-                        <form method="GET">
+                        <form method="GET" action="">
                             <label for="">Choose Country</label>
                             <div class="form-row align-items-center">
                               <div class="col-md-11">
                                 <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                                <select class="custom-select mr-sm-2" id="countryname" type="text" for="countryname">
-                                  <option selected>Choose...</option>
-                                  {% for c in countryPick %}
+                                <select class="custom-select mr-sm-2" id="countryname" type="text" name = "country" for="countryname">
+                                  <option>Choose...</option>
+                                  {% for c in data %}
                                     <option>{{c.Country}}</option>
                                   {% endfor %}
                                 </select>
@@ -71,7 +71,7 @@
             
             <br>
             
-            <div id="datacards" class="row">
+            <!--<div id="datacards" class="row">
                 <div class="col-md-4 col-sm-4 col-xs-8">
                     <div class="card" id="confirmedCard">
                         <div class="card-body">
@@ -102,7 +102,7 @@
                     </div>
                 </div>  
             </div>
-            
+        -->
 <!--{{countryPick}}-->
 <br>
             <div class="row">
@@ -146,9 +146,9 @@
     </script>
     <script>
         console.log("Country Running")
-        const x = '{{countryPick.10.TotalConfirmed}}';
-        const y = '{{countryPick.10.TotalRecovered}}';
-        const z = '{{countryPick.10.TotalDeaths}}';
+        const x = '{{countryPick.TotalConfirmed}}';
+        const y = '{{countryPick.TotalRecovered}}';
+        const z = '{{countryPick.TotalDeaths}}';
         console.log('{{countryPick.Country}}');
         const n = 100;
         
