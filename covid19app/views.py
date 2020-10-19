@@ -75,7 +75,7 @@ def covid(request):
 
 @login_required(login_url='/logout')
 def countryData(request):
-    #sdata = True
+    
     result = None
     countryPick  = None
     countrydata = request.GET.get("country") or 'India'

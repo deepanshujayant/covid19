@@ -5,6 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COVID-19</title>
+    <!-- semantic UI -->
+    <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+    <!--Chart js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js"></script>
     <link rel="stylesheet" href="{% static 'covid19app/css/CountryPage.css' %}">
@@ -22,61 +30,74 @@
             </div>
             <ul class="sidebar-list components">
                 <li>
-                    <a href="/main"><h4>Global Data</h4></a>
+                    <a href="/main"><h3>Global Data</h3></a>
                 </li>
                 <li>
-                    <a href="/country">Country Data</a>
+                    <a href="/country"><h3>Country Data</h3></a>
+                </li>
+                <li><a href="/country/?country=India"><i class="india flag"></i></a></li>
+                <li><a href="/country/?country=China"><i class="china flag"></i></a></li>
+                <li><a href="/country/?country=Spain"><i class="spain flag"></i></a></li>
+                <li>
+                    <a href="/country/?country=France"><i class="france flag"></i></a>
                 </li>
                 <li>
-                    <a href="/country/?country=Australia"><i class="fa fa-map" aria-hidden="true"></i></a>
+                    <a href="/country/?country=Italy"><i class="italy flag"></i></a>
+                </li>
+                <li>
+                    <a href="/country/?country=United States of America"><i class="america flag"></i></a>
                 </li>
             </ul>
         </nav>
         <div id="content">
             
+            
             <div class="card">
               
                 <div class="card-title text-centre">
                   
-                  <button id="sidebarCollapse" class="card float-left"><i class="fa fa-toggle-on" aria-hidden="true"></i></button>
-                  <a href="/logout">
-                      <button type="button" href="/logout" class="card btn float-right"><i class="fa fa-power-off" aria-hidden="true"></i></button>
-                  </a>
+                  <a id="sidebarCollapse" class="card float-left"><i class="fa fa-toggle-on" aria-hidden="true"></i></a>
+                  <a href="/logout" class="card float-right"><i class="fa fa-power-off" aria-hidden="true"></i></a>
                   <h3>Covid19 Dashboard</h3>               
                 </div>
               </div>
             <br>
-            <div class="card">
-              
-                <div class="card-title">
-                    
-                    <div> 
-                        <form method="GET" action="">
-                            <label for="">Choose Country</label>
-                            <div class="form-row row align-items-center">
-                              <div class="col-auto">
-                                
-                                <select class="custom-select mr-sm-2" id="countryname" type="text" name = "country" for="countryname">
-                                  <option>Choose...</option>
-                                  {% for c in data %}
-                                    <option>{{c.Country}}</option>
-                                  {% endfor %}
-                                </select>
-                              </div>
-                              
-                              <div class="col-auto float-right">
-                                <button type="submit" value="OK" class="btn btn-primary">Search</button>
-                              </div>
-                            </div>
-                          </form>
+            <div id="datacards" class="row">
+                <div class="col-md-6 col-sm-6 col-xs-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Choose Country</h3>
+                            <form method="GET" action="">
+                                <div class="form-row row align-items-center">
+                                  <div class="col-auto">
+                                    
+                                    <select class="custom-select mr-sm-2" id="countryname" type="text" name = "country" for="countryname">
+                                      <option>Choose...</option>
+                                      {% for c in data %}
+                                        <option>{{c.Country}}</option>
+                                      {% endfor %}
+                                    </select>
+                                  </div>
+                                  
+                                  <div class="col-auto">
+                                    <button type="submit" value="OK" class="btn float-right btn-primary">Search</button>
+                                  </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    
-                    
                 </div>
-                <div>
-                    <p>{{countryPick.Country}}</p>
+                <div class="col-md-6 col-sm-6 col-xs-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Country</h3>
+                            <p>{{countryPick.Country}}</p>
+                        </div>
+                    </div>
                 </div>
+
             </div>
+            
             
             <br>
             
@@ -87,7 +108,7 @@
                         <div class="card-body">
                             <h4 class="card-title">Confirmed Cases</h4>
                             
-                            <p class="card-text">{{countryPick.TotalConfirmed}}</p>
+                            <p id="nums" class="card-text">{{countryPick.TotalConfirmed}}</p>
                         </div>
                     </div>
                 </div>
@@ -96,7 +117,7 @@
                         <div class="card-body">
                             <h4 class="card-title">Recovered Cases</h4>
                             
-                            <p class="card-text">{{countryPick.TotalRecovered}}</p>
+                            <p id="nums" class="card-text">{{countryPick.TotalRecovered}}</p>
                         </div>
                     </div>
                 </div>
@@ -105,7 +126,7 @@
                         <div class="card-body">
                             <h4 class="card-title">Death Cases</h4>
 
-                            <p class="card-text">{{countryPick.TotalDeaths}}</p>
+                            <p id="nums" class="card-text">{{countryPick.TotalDeaths}}</p>
                         </div>
                     </div>
                 </div>  
@@ -114,23 +135,55 @@
 <!--{{countryPick}}-->
 <br>
             <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-8">
+                <div class="col-md-12 col-lg-6 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="card-body">
                             <canvas id="barChart" width="100" height="65"></canvas>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-6 col-xs-8">
+                <div class="col-md-12 col-lg-6 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="card-body">
-                            <canvas id="polarChart" width="100" height="65"></canvas>
+                            <canvas id="dough" width="100" height="65"></canvas>
                         </div>
                     </div>
                 </div>
-            </div>    
+            </div>   
+            <br>
+            <div id="datacards" class="row">
+                <div class="col-md-4 col-sm-4 col-xs-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">New Confirmed Cases</h4>
+                            
+                            <p id="nums" class="card-text">{{countryPick.NewConfirmed}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">New Recovered Cases</h4>
+                            
+                            <p id="nums" class="card-text">{{countryPick.NewRecovered}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">New Death Cases</h4>
+
+                            <p id="nums" class="card-text">{{countryPick.NewDeaths}}</p>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+             
             
         </div>
+        <br>
         
         
     </div>
@@ -167,25 +220,60 @@
         const y = '{{countryPick.TotalRecovered}}';
         const z = '{{countryPick.TotalDeaths}}';
         console.log('{{countryPick.Country}}');
+        console.log('{{countryPick.NewDeaths}}')
         const n = 100;
         
         const ctx1 = document.getElementById('barChart').getContext('2d');
         const chart1 = new Chart(ctx1, {
             // The type of chart we want to create
-            type: 'bar',
+            type: 'pie',
 
             // The data for our dataset
             data: {
-                labels: ['Cases', 'Recovered', 'Deaths'],
+                labels: ['Total Cases', 'Total Recovered', 'Total Deaths'],
                 datasets: [{
                     
                     //fill : false,
                     backgroundColor: ['rgb(77, 0, 255)','rgb(0, 175, 58)','rgb(208, 0, 0)'],
                     borderColor: ['rgb(0, 0, 0)','rgb(0, 0, 0)','rgb(0, 0, 0)'],
-                    data: [x/n,y/n,z/n]
+                    data: [x,y,z]
                 }]
             },
+            options :{}
         });
+        
+    </script>
+    <script>
+        console.log("Country Running")
+        const x1 = '{{countryPick.NewConfirmed}}';
+        const y1 = '{{countryPick.NewRecovered}}';
+        const z1 = '{{countryPick.NewDeaths}}';
+        console.log('{{countryPick.Country}}');
+        console.log('{{countryPick.NewDeaths}}')
+        //const n = 100;
+        if(x1 != 0 || y1 != 0 || z1 != 0){
+        const ctx11 = document.getElementById('dough').getContext('2d');
+        const chart11 = new Chart(ctx11, {
+            // The type of chart we want to create
+            type: 'doughnut',
+
+            // The data for our dataset
+            data: {
+                labels: ['New Cases', 'New Recovered', 'New Deaths'],
+                datasets: [{
+                    
+                    //fill : false,
+                    backgroundColor: ['rgb(77, 0, 255)','rgb(0, 175, 58)','rgb(208, 0, 0)'],
+                    borderColor: ['rgb(0, 0, 0)','rgb(0, 0, 0)','rgb(0, 0, 0)'],
+                    data: [x1,y1,z1]
+                }]
+            },
+            options :{}
+        });
+        }else{
+            console.log("No Data")
+            
+        }
         
     </script>
     
