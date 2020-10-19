@@ -10,6 +10,12 @@ p{
 	line-height: 1.7em;
 	color: #fff;
 }
+#confirmedCard{
+	
+    -webkit-box-shadow: 0px 0px 8px 3px white;
+    -moz-box-shadow: 0px 0px 8px 3px white;
+    box-shadow: 0px 0px 8px 3px white;
+ }
 #covid{
     padding: 5px;
     width: auto;

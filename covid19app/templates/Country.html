@@ -24,6 +24,8 @@
         
         <nav id="sidebar">
             <div class="sidebar-header">
+                <img id="covid" style="width: 150px;" src="https://media.tghn.org/medialibrary/2020/04/covid19_logo.png" alt="">
+                <hr style="background: white;">
                 <i class="fa fa-user-md" aria-hidden="true"></i>
                 <h3>{{request.user}}</h3>
                 <h5 id="date"></h5>
@@ -35,18 +37,19 @@
                 <li>
                     <a href="/country"><h3>Country Data</h3></a>
                 </li>
-                <li><a href="/country/?country=India"><i class="india flag"></i></a></li>
-                <li><a href="/country/?country=China"><i class="china flag"></i></a></li>
-                <li><a href="/country/?country=Spain"><i class="spain flag"></i></a></li>
+                <li><a style="font-size: large;" href="/country/?country=India"><i class="india flag"></i>INDiA</a></li>
+                <li><a style="font-size: large;" href="/country/?country=China"><i class="china flag"></i>CHiNA</a></li>
+                <li><a style="font-size: large;" href="/country/?country=Spain"><i class="spain flag"></i>SPAiN</a></li>
                 <li>
-                    <a href="/country/?country=France"><i class="france flag"></i></a>
+                    <a style="font-size: large;" href="/country/?country=France"><i class="france flag"></i>FRANCE</a>
                 </li>
                 <li>
-                    <a href="/country/?country=Italy"><i class="italy flag"></i></a>
+                    <a style="font-size: large;" href="/country/?country=Italy"><i class="italy flag"></i>ITALY</a>
                 </li>
                 <li>
-                    <a href="/country/?country=United States of America"><i class="america flag"></i></a>
+                    <a style="font-size: large;" href="/country/?country=United States of America"><i class="america flag"></i>USA</a>
                 </li>
+                
             </ul>
         </nav>
         <div id="content">
@@ -58,7 +61,8 @@
                   
                   <a id="sidebarCollapse" class="card float-left"><i class="fa fa-toggle-on" aria-hidden="true"></i></a>
                   <a href="/logout" class="card float-right"><i class="fa fa-power-off" aria-hidden="true"></i></a>
-                  <h3>Covid19 Dashboard</h3>               
+                  <h3>Covid19 Dashboard</h3>
+                  <h5>Country Stats</h5>               
                 </div>
               </div>
             <br>
@@ -69,7 +73,7 @@
                             <h3>Choose Country</h3>
                             <form method="GET" action="">
                                 <div class="form-row row align-items-center">
-                                  <div class="col-auto">
+                                  <div class="col text-centre">
                                     
                                     <select class="custom-select mr-sm-2" id="countryname" type="text" name = "country" for="countryname">
                                       <option>Choose...</option>
@@ -90,8 +94,9 @@
                 <div class="col-md-6 col-sm-6 col-xs-8">
                     <div class="card">
                         <div class="card-body">
-                            <h3>Country</h3>
-                            <p>{{countryPick.Country}}</p>
+                            <h3><span style="color: yellowgreen;">Active</span> Country</h3>
+                            
+                            <h4>{{countryPick.Country}}</h4>
                         </div>
                     </div>
                 </div>
@@ -108,7 +113,7 @@
                         <div class="card-body">
                             <h4 class="card-title">Confirmed Cases</h4>
                             
-                            <p id="nums" class="card-text">{{countryPick.TotalConfirmed}}</p>
+                            <p id="nums" class="card-text count">{{countryPick.TotalConfirmed}}</p>
                         </div>
                     </div>
                 </div>
@@ -117,7 +122,7 @@
                         <div class="card-body">
                             <h4 class="card-title">Recovered Cases</h4>
                             
-                            <p id="nums" class="card-text">{{countryPick.TotalRecovered}}</p>
+                            <p id="nums" class="count card-text">{{countryPick.TotalRecovered}}</p>
                         </div>
                     </div>
                 </div>
@@ -126,7 +131,7 @@
                         <div class="card-body">
                             <h4 class="card-title">Death Cases</h4>
 
-                            <p id="nums" class="card-text">{{countryPick.TotalDeaths}}</p>
+                            <p id="nums" class="count card-text">{{countryPick.TotalDeaths}}</p>
                         </div>
                     </div>
                 </div>  
@@ -188,11 +193,27 @@
         
     </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!--Bootstrap CDN-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <!--Chart.js CDN-->
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+    <!--Jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha512-CEiA+78TpP9KAIPzqBvxUv8hy41jyI3f2uHi7DGp/Y/Ka973qgSdybNegWFciqh6GrN2UePx2KkflnQUbUhNIA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js" integrity="sha512-d8F1J2kyiRowBB/8/pAWsqUl0wSEOkG5KATkVV4slfblq9VRQ6MyDZVxWl2tWd+mPhuCbpTB4M7uU/x9FlgQ9Q==" crossorigin="anonymous"></script>
+    <!---->
+    <script>
+        $ ('.count').counterUp({
+            delay: 20,
+            time: 1000
+        });
+        console.log('.count')
+    </script>
     <script>
         console.log("Country Running")
 
