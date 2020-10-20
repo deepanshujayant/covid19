@@ -120,7 +120,7 @@ ul ul a{
 
 @media (max-width: 768px) {
     #sidebar {
-        margin-left: -250px;
+        margin-left: -200px;
     }
     #sidebar.active {
         margin-left: 0;
@@ -129,6 +129,7 @@ ul ul a{
         display: none;
     }
 }
+
 
 
 .card{

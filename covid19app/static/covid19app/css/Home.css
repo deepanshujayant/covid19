@@ -27,7 +27,7 @@ p{
     align-items: center;
     align-content: center;
     padding: 5px;
-    width: 400px;
+    width: 350px;
     height: 150px;
 }
 .card{
@@ -37,6 +37,7 @@ p{
     padding-bottom: 30px;
     color: white;
     margin: auto;
+    margin-bottom: 100px;
     transition: all 0.3s;
 }
 .covidcard{
